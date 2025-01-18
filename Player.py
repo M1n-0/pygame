@@ -25,6 +25,10 @@ class Player:
     
     def move(self):
         self.x += self.speed
+        if self.x < -10:
+            self.x = -10
+        if self.x > 340:
+            self.x = 340
 
     def turning(self):
         if self.speed > 0:

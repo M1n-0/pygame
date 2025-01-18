@@ -26,7 +26,9 @@ while running:
     screen.fill(backround)
     screen.blit(player.sprite, (player.x, player.y))
     scoreText = font.render("Score: " + str(score), True, (120,120,120), backround)
-    screen.blit(scoreText, (320, 20))
+    screen.blit(scoreText, (0, 12))
+    hightScoreText = font.render("Hight Score: " + str(score), True, (120,120,120), backround)
+    screen.blit(hightScoreText, (260, 12))
     blocks = []
 
     for i in range(len(plateforms)):
@@ -36,7 +38,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN and not gameOver:
             if event.key == pygame.K_q or event.key == pygame.K_LEFT:
                 player.speed = -5
             if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
@@ -59,8 +61,16 @@ while running:
             if plateforms[i].affichage(player.yChange): #ici on remplace la plateforme si elle sort par une nouvelle en haut de l'écran et on ajout +1 au score
                 plateforms[i] = Plateform(randint(0, 330), randint(-30, 10), 0)
                 score += 1
+                if score > hightScore:
+                    hightScore = score
+    
+    if player.y > 435:
+        gameOver = True
+        player.yChange = 0
+    
+    if gameOver:
+        pygame.mixer.music.stop()
 
     pygame.display.flip()
 
-pygame.mixer.music.stop()
 pygame.quit()
