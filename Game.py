@@ -79,6 +79,8 @@ font = pygame.font.Font("freesansbold.ttf", 16)
 screen = pygame.display.set_mode([500, 500]) #setup de la taille de l'écran
 pygame.display.set_caption("Menu Doodle") #nom de la fenêtre de jeu
 timer = pygame.time.Clock()
+pygame.mixer.music.load("Musique du oui (corobizar  Musique dattente).mp3")
+pygame.mixer.music.play(-1, 0.0)
 inGame = True
 
 while inGame:
@@ -94,9 +96,12 @@ while inGame:
             inGame = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
+                pygame.mixer.music.stop()
                 play(True)
                 screen = pygame.display.set_mode([500, 500]) #setup de la taille de l'écran
                 pygame.display.set_caption("Menu Doodle") #nom de la fenêtre de jeu
+                pygame.mixer.music.load("Musique du oui (corobizar  Musique dattente).mp3")
+                pygame.mixer.music.play(-1, 0.0)
     pygame.display.flip()
         
 pygame.quit()
