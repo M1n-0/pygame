@@ -13,6 +13,7 @@ pygame.display.set_caption("Doodle qui Jump") #nom de la fenêtre de jeu
 player = Player()
 plateforms = [Plateform()]
 
+
 running = True
 while running:
     timer.tick(60) #setup des fps
@@ -27,6 +28,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    player.updateY()
+    player.onGround(blocks)
     
     pygame.display.flip()
 
