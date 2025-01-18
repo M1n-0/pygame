@@ -70,6 +70,7 @@ def play(running):
         if gameOver:
             pygame.mixer.music.stop()
             screen.fill(backround)
+            running = False
 
         pygame.display.flip()
 
@@ -94,6 +95,8 @@ while inGame:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 play(True)
+                screen = pygame.display.set_mode([500, 500]) #setup de la taille de l'écran
+                pygame.display.set_caption("Menu Doodle") #nom de la fenêtre de jeu
     pygame.display.flip()
         
 pygame.quit()
