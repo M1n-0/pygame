@@ -1,6 +1,7 @@
 import pygame
 from Player import *
 from Plateform import *
+from random import randint
 
 pygame.init()
 
@@ -11,7 +12,7 @@ backround = (255,255,255)
 screen = pygame.display.set_mode([400, 500]) #setup de la taille de l'écran
 pygame.display.set_caption("Doodle qui Jump") #nom de la fenêtre de jeu
 player = Player()
-plateforms = [Plateform()]
+plateforms = [Plateform(), Plateform(randint(0, 330), randint(250, 450), 0), Plateform(randint(0, 330), randint(250, 450), 0)]
 
 
 running = True
@@ -30,9 +31,9 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q or event.key == pygame.K_LEFT:
-                player.speed = -4
+                player.speed = -5
             if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                player.speed = 4
+                player.speed = 5
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_q or event.key == pygame.K_LEFT:
                 player.speed = 0

@@ -1,6 +1,6 @@
 import pygame
 
 class Plateform:
-    def __init__(self, co = [165, 480, 70, 10], type = 0):
-        self.co = co
+    def __init__(self, coX = 165, coY = 480, type = 0):
+        self.co = [coX, coY, 70, 11]
         self.type = type

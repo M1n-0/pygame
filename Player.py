@@ -20,7 +20,7 @@ class Player:
     #gère la collision avec les plateformes
     def onGround(self, blocks):
         for i in range(len(blocks)):
-            if blocks[i].colliderect([self.x +20, self.y + 60, 35, 5]) and self.jump == False and self.yChange > 0: #on vérifie qu'on touche une plateforme pendant la redescente
+            if blocks[i].colliderect([self.x +15, self.y + 60, 35, 10]) and self.jump == False and self.yChange > 0: #on vérifie qu'on touche une plateforme pendant la redescente
                 self.jump = True
     
     def move(self):
