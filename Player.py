@@ -12,10 +12,10 @@ class Player:
     #gère le saut
     def updateY(self):
         if self.jump:
-            self.yChange = -15 #hauteur du saut
+            self.yChange = -12 #hauteur du saut
             self.jump = False
         self.y += self.yChange
-        self.yChange += .5 #l'effet de gravité
+        self.yChange += .4 #l'effet de gravité
     
     #gère la collision avec les plateformes
     def onGround(self, blocks):

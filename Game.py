@@ -43,6 +43,13 @@ while running:
     player.move()
     player.onGround(blocks)
     player.updateY()
+
+    #on vérifie la hauteur du joueur, puis on bouge les plateformes si nécessaire
+    if player.y < 200 and player.yChange < 0:
+        for i in range(len(plateforms)):
+            plateforms[i].affichage(player.yChange)
+            if plateforms[i].affichage(player.yChange): #ici on remplace la plateforme si elle sort par une nouvelle en haut de l'écran
+                plateforms[i] = Plateform(randint(0, 330), randint(50, 175), 0)
     
     pygame.display.flip()
 
