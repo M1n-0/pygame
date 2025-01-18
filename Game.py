@@ -28,9 +28,20 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q or event.key == pygame.K_LEFT:
+                player.speed = -4
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                player.speed = 4
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_q or event.key == pygame.K_LEFT:
+                player.speed = 0
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                player.speed = 0
 
-    player.updateY()
+    player.move()
     player.onGround(blocks)
+    player.updateY()
     
     pygame.display.flip()
 
