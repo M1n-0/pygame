@@ -15,8 +15,10 @@ gameOver = False
 screen = pygame.display.set_mode([400, 500]) #setup de la taille de l'écran
 pygame.display.set_caption("Doodle qui Jump") #nom de la fenêtre de jeu
 player = Player()
-plateforms = [Plateform(), Plateform(randint(0, 330), randint(320, 420), 0), Plateform(randint(0, 330), randint(270, 370), 0), Plateform(randint(0, 330), randint(240, 320), 0),Plateform(randint(0, 330), randint(170, 270), 0)]
+plateforms = [Plateform(), Plateform(randint(0, 330), randint(300, 400), 0), Plateform(randint(0, 330), randint(250, 350), 0), Plateform(randint(0, 330), randint(180, 280), 0),Plateform(randint(0, 330), randint(100, 200), 0)]
 
+pygame.mixer.music.load("Glorious Morning 2.mp3")
+pygame.mixer.music.play(-1, 0.0)
 
 running = True
 while running:
@@ -60,5 +62,5 @@ while running:
 
     pygame.display.flip()
 
-
+pygame.mixer.music.stop()
 pygame.quit()
