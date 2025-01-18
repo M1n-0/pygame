@@ -12,7 +12,7 @@ backround = (255,255,255)
 screen = pygame.display.set_mode([400, 500]) #setup de la taille de l'écran
 pygame.display.set_caption("Doodle qui Jump") #nom de la fenêtre de jeu
 player = Player()
-plateforms = [Plateform(), Plateform(randint(0, 330), randint(250, 450), 0), Plateform(randint(0, 330), randint(250, 450), 0), Plateform(randint(0, 330), randint(100, 300), 0), Plateform(randint(0, 330), randint(100, 300), 0), Plateform(randint(0, 330), randint(20, 150), 0)]
+plateforms = [Plateform(), Plateform(randint(0, 330), randint(250, 450), 0), Plateform(randint(0, 330), randint(100, 300), 0), Plateform(randint(0, 330), randint(20, 150), 0)]
 
 
 running = True
@@ -49,7 +49,7 @@ while running:
         for i in range(len(plateforms)):
             plateforms[i].affichage(player.yChange)
             if plateforms[i].affichage(player.yChange): #ici on remplace la plateforme si elle sort par une nouvelle en haut de l'écran
-                plateforms[i] = Plateform(randint(0, 330), randint(50, 175), 0)
+                plateforms[i] = Plateform(randint(0, 330), randint(-50, -10), 0)
     
     pygame.display.flip()
 
