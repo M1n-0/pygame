@@ -25,3 +25,9 @@ class Player:
     
     def move(self):
         self.x += self.speed
+
+    def turning(self):
+        if self.speed > 0:
+            self.sprite = pygame.transform.scale(pygame.image.load("doodle.png"), (70,70))
+        if self.speed < 0:
+            self.sprite = pygame.transform.flip(pygame.transform.scale(pygame.image.load("doodle.png"), (70,70)), 1, 0)
