@@ -2,13 +2,34 @@ import pygame
 from Player import *
 from Plateform import *
 from random import randint
+import os
+
+print(f"Current working directory: {os.getcwd()}")
+print(f"Can write to current directory: {os.access(os.getcwd(), os.W_OK)}")
+
+print("Saved successfully. Check highscore.txt.")
+
+def load_high_score(filename="highscore.txt"):
+    try:
+        with open(filename, "r") as file:
+            return int(file.read().strip())  # Convertit proprement en entier
+    except (FileNotFoundError, ValueError):  # Si le fichier est manquant ou corrompu
+        return 0
+
+def save_high_score(high_score, filename="highscore.txt"):
+    try:
+        with open(filename, "w") as file:
+            file.write(str(high_score))  # Écrit uniquement le score
+    except Exception as e:
+        print(f"Error saving high score: {e}")
+
 
 def play(running):
     font = pygame.font.Font("freesansbold.ttf", 16)
     timer = pygame.time.Clock()
     backround = (255,255,255)
     score = 0
-    hightScore = 0
+    hightScore = load_high_score()
     gameOver = False
 
     screen = pygame.display.set_mode([400, 500]) #setup de la taille de l'écran
@@ -25,7 +46,7 @@ def play(running):
         screen.blit(player.sprite, (player.x, player.y))
         scoreText = font.render("Score: " + str(score), True, (120,120,120), backround)
         screen.blit(scoreText, (0, 12))
-        hightScoreText = font.render("Hight Score: " + str(score), True, (120,120,120), backround)
+        hightScoreText = font.render("High Score: " + str(hightScore), True, (120,120,120), backround)
         screen.blit(hightScoreText, (260, 12))
         blocks = []
 
@@ -60,14 +81,18 @@ def play(running):
                 if plateforms[i].affichage(player.yChange): #ici on remplace la plateforme si elle sort par une nouvelle en haut de l'écran et on ajout +1 au score
                     plateforms[i] = Plateform(randint(0, 330), randint(-30, 10), 0)
                     score += 1
-                    if score > hightScore:
-                        hightScore = score
+
         
         if player.y > 435:
             gameOver = True
             player.yChange = 0
         
         if gameOver:
+            if score > hightScore:
+                print(f"New high score: {score}")  # Ajoutez ce print pour voir le score
+                save_high_score(score)  # Appelle la sauvegarde
+            else:
+                print(f"Game over. Score: {score}, High score: {hightScore}")
             pygame.mixer.music.stop()
             screen.fill(backround)
             running = False
